@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		AA2128C726F715FF00807AF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2128C626F715FF00807AF1 /* AppDelegate.swift */; };
-		AA2128C926F715FF00807AF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2128C826F715FF00807AF1 /* SceneDelegate.swift */; };
 		AA2128CB26F715FF00807AF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2128CA26F715FF00807AF1 /* ViewController.swift */; };
 		AA2128CE26F715FF00807AF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA2128CC26F715FF00807AF1 /* Main.storyboard */; };
 		AA2128D026F7160000807AF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2128CF26F7160000807AF1 /* Assets.xcassets */; };
 		AA2128D326F7160000807AF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA2128D126F7160000807AF1 /* LaunchScreen.storyboard */; };
 		AA2128DE26F7160000807AF1 /* ZoomableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2128DD26F7160000807AF1 /* ZoomableViewTests.swift */; };
 		AA2128E926F7160000807AF1 /* ZoomableViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2128E826F7160000807AF1 /* ZoomableViewUITests.swift */; };
+		AA21290126F71AA000807AF1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2128FF26F71AA000807AF1 /* CustomTableViewCell.swift */; };
+		AA21290226F71AA000807AF1 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA21290026F71AA000807AF1 /* CustomTableViewCell.xib */; };
+		AA21290D26F71B6300807AF1 /* ZoomableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21290C26F71B6300807AF1 /* ZoomableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,6 @@
 /* Begin PBXFileReference section */
 		AA2128C326F715FF00807AF1 /* ZoomableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZoomableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2128C626F715FF00807AF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AA2128C826F715FF00807AF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AA2128CA26F715FF00807AF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA2128CD26F715FF00807AF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA2128CF26F7160000807AF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +50,9 @@
 		AA2128E426F7160000807AF1 /* ZoomableViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZoomableViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2128E826F7160000807AF1 /* ZoomableViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableViewUITests.swift; sourceTree = "<group>"; };
 		AA2128EA26F7160000807AF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA2128FF26F71AA000807AF1 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		AA21290026F71AA000807AF1 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		AA21290C26F71B6300807AF1 /* ZoomableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +103,10 @@
 		AA2128C526F715FF00807AF1 /* ZoomableView */ = {
 			isa = PBXGroup;
 			children = (
+				AA21290C26F71B6300807AF1 /* ZoomableView.swift */,
+				AA2128FF26F71AA000807AF1 /* CustomTableViewCell.swift */,
+				AA21290026F71AA000807AF1 /* CustomTableViewCell.xib */,
 				AA2128C626F715FF00807AF1 /* AppDelegate.swift */,
-				AA2128C826F715FF00807AF1 /* SceneDelegate.swift */,
 				AA2128CA26F715FF00807AF1 /* ViewController.swift */,
 				AA2128CC26F715FF00807AF1 /* Main.storyboard */,
 				AA2128CF26F7160000807AF1 /* Assets.xcassets */,
@@ -232,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA2128D326F7160000807AF1 /* LaunchScreen.storyboard in Resources */,
+				AA21290226F71AA000807AF1 /* CustomTableViewCell.xib in Resources */,
 				AA2128D026F7160000807AF1 /* Assets.xcassets in Resources */,
 				AA2128CE26F715FF00807AF1 /* Main.storyboard in Resources */,
 			);
@@ -258,9 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA21290126F71AA000807AF1 /* CustomTableViewCell.swift in Sources */,
+				AA21290D26F71B6300807AF1 /* ZoomableView.swift in Sources */,
 				AA2128CB26F715FF00807AF1 /* ViewController.swift in Sources */,
 				AA2128C726F715FF00807AF1 /* AppDelegate.swift in Sources */,
-				AA2128C926F715FF00807AF1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -421,7 +429,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -437,15 +445,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HSXVFBW26B;
 				INFOPLIST_FILE = ZoomableView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = none.ZoomableView;
+				PRODUCT_BUNDLE_IDENTIFIER = khoinh.ZoomableView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -455,15 +465,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HSXVFBW26B;
 				INFOPLIST_FILE = ZoomableView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = none.ZoomableView;
+				PRODUCT_BUNDLE_IDENTIFIER = khoinh.ZoomableView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
