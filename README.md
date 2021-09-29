@@ -19,7 +19,9 @@ To get a local copy up and running follow these simple steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-![Demo](https://media.giphy.com/media/ulgiV6nUJBeBG6Kleq/giphy.gif?cid=790b7611b05bfe588f98fa46fcfc6a8a0c5024c2b0580cd0&rid=giphy.gif&ct=g)
+Zoom UIView/UIImageView    |  Zoom AVPlayer in UIView
+:-------------------------:|:-------------------------:
+![](https://media.giphy.com/media/I3WzpuP9pusXQu9YDW/giphy.gif?cid=790b7611afaf908a0b5f48fca98e9baef9a0ba71d15ab0b9&rid=giphy.gif&ct=g)  |  ![](https://media.giphy.com/media/WmD0FeT4JC2wBqRKi4/giphy.gif?cid=790b76111ec1d74961dc0ab38f0bab63f2642208efc2d092&rid=giphy.gif&ct=g)
 
 [Example](https://github.com/huykhoi98hn/ZoomableView/tree/main/ZoomableView)
 
