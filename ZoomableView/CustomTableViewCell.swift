@@ -2,7 +2,7 @@
 //  CustomTableViewCell.swift
 //  ZoomableView
 //
-//  Created by Savvycom2021 on 19/09/2021.
+//  Created by kevin.ngh54 on 01/01/2023.
 //
 
 import UIKit
@@ -14,18 +14,11 @@ enum CellType {
     case video
 }
 
-protocol CustomTableViewCellDelegate: AnyObject {
-    func customCellDidZoom(cell: CustomTableViewCell)
-    func customCellEndZoom(cell: CustomTableViewCell)
-}
-
-class CustomTableViewCell: UITableViewCell {
-    @IBOutlet weak var zoomableView: ZoomableView!
-    weak var delegate: CustomTableViewCellDelegate?
+class CustomTableViewCell: UITableViewCell, ZoomableTableViewCell {
+    @IBOutlet private weak var mediaView: ZoomableView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        zoomableView.delegate = self
+    var zoomableView: ZoomableView {
+        return mediaView
     }
     
     func setData(type: CellType) {
@@ -53,20 +46,5 @@ class CustomTableViewCell: UITableViewCell {
             player.play()
         }
         zoomableView.isZoomable = true
-    }
-    
-}
-
-extension CustomTableViewCell: ZoomableViewDelegate {
-    func zoomableViewShouldZoom(_ view: ZoomableView) -> Bool {
-        return true
-    }
-    
-    func zoomableViewDidZoom(_ view: ZoomableView) {
-        delegate?.customCellDidZoom(cell: self)
-    }
-    
-    func zoomableViewEndZoom(_ view: ZoomableView) {
-        delegate?.customCellEndZoom(cell: self)
     }
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68B521A82960AC4B00BAAAEB /* ZoomableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B521A72960AC4B00BAAAEB /* ZoomableTableView.swift */; };
+		68B521AA2960ACB800BAAAEB /* ZoomableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B521A92960ACB800BAAAEB /* ZoomableViewDelegate.swift */; };
+		68B521AC2960B50100BAAAEB /* ZoomableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B521AB2960B50100BAAAEB /* ZoomableCollectionView.swift */; };
 		AA2128C726F715FF00807AF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2128C626F715FF00807AF1 /* AppDelegate.swift */; };
 		AA2128CB26F715FF00807AF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2128CA26F715FF00807AF1 /* ViewController.swift */; };
 		AA2128CE26F715FF00807AF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA2128CC26F715FF00807AF1 /* Main.storyboard */; };
@@ -37,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		68B521A72960AC4B00BAAAEB /* ZoomableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableTableView.swift; sourceTree = "<group>"; };
+		68B521A92960ACB800BAAAEB /* ZoomableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableViewDelegate.swift; sourceTree = "<group>"; };
+		68B521AB2960B50100BAAAEB /* ZoomableCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableCollectionView.swift; sourceTree = "<group>"; };
 		AA2128C326F715FF00807AF1 /* ZoomableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZoomableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2128C626F715FF00807AF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA2128CA26F715FF00807AF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +109,9 @@
 		AA2128C526F715FF00807AF1 /* ZoomableView */ = {
 			isa = PBXGroup;
 			children = (
+				68B521AB2960B50100BAAAEB /* ZoomableCollectionView.swift */,
+				68B521A72960AC4B00BAAAEB /* ZoomableTableView.swift */,
+				68B521A92960ACB800BAAAEB /* ZoomableViewDelegate.swift */,
 				AA21290C26F71B6300807AF1 /* ZoomableView.swift */,
 				AA2128FF26F71AA000807AF1 /* CustomTableViewCell.swift */,
 				AA21290026F71AA000807AF1 /* CustomTableViewCell.xib */,
@@ -265,9 +274,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68B521AA2960ACB800BAAAEB /* ZoomableViewDelegate.swift in Sources */,
 				AA21290126F71AA000807AF1 /* CustomTableViewCell.swift in Sources */,
 				AA21290D26F71B6300807AF1 /* ZoomableView.swift in Sources */,
+				68B521A82960AC4B00BAAAEB /* ZoomableTableView.swift in Sources */,
 				AA2128CB26F715FF00807AF1 /* ViewController.swift in Sources */,
+				68B521AC2960B50100BAAAEB /* ZoomableCollectionView.swift in Sources */,
 				AA2128C726F715FF00807AF1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

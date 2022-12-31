@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,21 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDO-Gg-dOP" customClass="ZoomableView" customModule="ZoomableView" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L72-St-TiB" customClass="ZoomableView" customModule="ZoomableView" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bDO-Gg-dOP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UBD-17-rSQ"/>
-                    <constraint firstAttribute="bottom" secondItem="bDO-Gg-dOP" secondAttribute="bottom" id="ZnV-rH-FGX"/>
-                    <constraint firstAttribute="trailing" secondItem="bDO-Gg-dOP" secondAttribute="trailing" id="e94-JI-oYB"/>
-                    <constraint firstItem="bDO-Gg-dOP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uN5-fS-yWl"/>
+                    <constraint firstAttribute="bottom" secondItem="L72-St-TiB" secondAttribute="bottom" id="0EP-ZA-tpq"/>
+                    <constraint firstAttribute="trailing" secondItem="L72-St-TiB" secondAttribute="trailing" id="19t-jE-NAa"/>
+                    <constraint firstItem="L72-St-TiB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Mlk-fe-ZHs"/>
+                    <constraint firstItem="L72-St-TiB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uxv-N2-IEY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="zoomableView" destination="bDO-Gg-dOP" id="cGS-cI-oHm"/>
+                <outlet property="mediaView" destination="L72-St-TiB" id="kZh-mm-B8S"/>
             </connections>
             <point key="canvasLocation" x="115.94202898550725" y="131.25"/>
         </tableViewCell>

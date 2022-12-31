@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  ZoomableView
 //
-//  Created by Savvycom2021 on 19/09/2021.
+//  Created by kevin.ngh54 on 01/01/2023.
 //
 
 import UIKit

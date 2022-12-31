@@ -2,28 +2,26 @@
 //  ZoomableView.swift
 //  ZoomableView
 //
-//  Created by Savvycom2021 on 19/09/2021.
+//  Created by kevin.ngh54 on 01/01/2023.
 //
 
 import UIKit
 
-protocol ZoomableViewDelegate: AnyObject {
-    func zoomableViewShouldZoom(_ view: ZoomableView) -> Bool
-    func zoomableViewDidZoom(_ view: ZoomableView)
-    func zoomableViewEndZoom(_ view: ZoomableView)
-    func zoomableViewGetBackground(_ view: ZoomableView) -> UIView?
+public struct ZoomableNotification {
+    static let didZoom = Notification.Name("zoomableViewDidZoom")
+    static let endZoom = Notification.Name("zoomableViewEndZoom")
 }
 
-class ZoomableView: UIView {
-    weak var delegate: ZoomableViewDelegate?
+public class ZoomableView: UIView {
+    public weak var delegate: ZoomableViewDelegate?
     /// Enable/Disable zoom ability
-    var isEnableZoom = true
+    public var isEnableZoom = true
     
     /// View's zoom status
-    var isZooming = false
+    public var isZooming = false
     
     /// Add/remove gesture if the view is/isn't zoomable
-    var isZoomable: Bool = false {
+    public var isZoomable: Bool = false {
         didSet {
             if isZoomable {
                 pinchGesture.map { removeGestureRecognizer($0) }
@@ -40,19 +38,19 @@ class ZoomableView: UIView {
     }
 
     /// View's pinch gesture
-    var pinchGesture: UIPinchGestureRecognizer?
+    public var pinchGesture: UIPinchGestureRecognizer?
 
     /// View's pan gesture
-    var panGesture: UIPanGestureRecognizer?
+    public var panGesture: UIPanGestureRecognizer?
     
     /// View's background when zooming
-    var backgroundView: UIView?
+    public var backgroundView: UIView?
     
     /// ZoomableView is the superview of sourceView which will be zoomed when the gestures recognize
     /// sourceView is needed to set reference so as to be zoomed
-    var sourceView: UIView? {
+    public var sourceView: UIView? {
         didSet {
-            guard let sourceView = sourceView else { 
+            guard let sourceView = sourceView else {
                 return
             }
             self.subviews.forEach({ $0.removeFromSuperview() })
@@ -64,6 +62,9 @@ class ZoomableView: UIView {
             sourceView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         }
     }
+    
+    /// The rate between UIPinchGestureRecognizer and Zoomable scale
+    public var scaleRate: CGFloat = 1.0
     
     /// View's scale
     private var scale: CGFloat = 1.0
@@ -79,7 +80,7 @@ class ZoomableView: UIView {
             backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         }
         if let pinchSourceView = sourceView {
-            let rect = pinchSourceView.convert(pinchSourceView.bounds, to: UIApplication.shared.keyWindow)
+            let rect = pinchSourceView.convert(pinchSourceView.bounds, to: UIApplication.shared.getKeyWindow())
             backgroundView.addSubview(pinchSourceView)
             pinchSourceView.translatesAutoresizingMaskIntoConstraints = true
             pinchSourceView.frame = rect
@@ -94,11 +95,17 @@ class ZoomableView: UIView {
         pinchGesture?.delegate = self
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(imagePanned(_:)))
         panGesture?.delegate = self
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reset),
+            name: UIDevice.orientationDidChangeNotification,
+            object: nil
+        )
     }
     
     /// Perform the pinch to zoom if needed.
     ///
-    /// - Parameter sender: UIPinvhGestureRecognizer
+    /// - Parameter sender: UIPinchGestureRecognizer
     @objc private func imagePinched(_ pinch: UIPinchGestureRecognizer) {
         if !isEnableZoom || !(delegate?.zoomableViewShouldZoom(self) ?? true) {
             return
@@ -106,16 +113,17 @@ class ZoomableView: UIView {
         if pinch.state == .began {
             isZooming = true
             sourceView?.translatesAutoresizingMaskIntoConstraints = true
-            UIApplication.shared.keyWindow?.addSubview(getBackgroundView())
+            UIApplication.shared.getKeyWindow()?.addSubview(getBackgroundView())
             delegate?.zoomableViewDidZoom(self)
+            NotificationCenter.default.post(name: ZoomableNotification.didZoom, object: nil, userInfo: ["view": self])
         }
-        if pinch.state == .changed {
-            if pinch.scale >= 1.0 {
-                scale = pinch.scale
-                transform(withTranslation: .zero)
-            }
+        if pinch.state == .changed, pinch.scale >= 1.0 {
+            scale = pinch.scale * scaleRate
+            transform(withTranslation: .zero)
         }
-        if pinch.state != .ended { return }
+        if pinch.state != .ended {
+            return
+        }
         reset()
     }
 
@@ -130,27 +138,32 @@ class ZoomableView: UIView {
     }
     
     /// Set the image back to it's initial state.
-    private func reset() {
+    @objc func reset() {
         scale = 1.0
         self.backgroundView?.backgroundColor = .clear
-        UIView.animate(withDuration: 0.35) {
-            self.sourceView?.transform = .identity
-        } completion: { [weak self] _ in
-            guard let self = self else {
-                return
-            }
-            self.backgroundView?.removeFromSuperview()
-            if let zoomableSourceView = self.sourceView {
-                self.addSubview(zoomableSourceView)
-                zoomableSourceView.translatesAutoresizingMaskIntoConstraints = false
-                zoomableSourceView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-                zoomableSourceView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-                zoomableSourceView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-                zoomableSourceView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-            }
-            self.isZooming = false
-            self.delegate?.zoomableViewEndZoom(self)
-        }
+        UIView.animate(
+            withDuration: 0.35,
+            animations: {
+                self.sourceView?.transform = .identity
+            },
+            completion: { [weak self] _ in
+                guard let self = self else {
+                    return
+                }
+                self.backgroundView?.removeFromSuperview()
+                self.backgroundView = nil
+                if let zoomableSourceView = self.sourceView {
+                    self.addSubview(zoomableSourceView)
+                    zoomableSourceView.translatesAutoresizingMaskIntoConstraints = false
+                    zoomableSourceView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+                    zoomableSourceView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+                    zoomableSourceView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+                    zoomableSourceView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+                }
+                self.isZooming = false
+                self.delegate?.zoomableViewEndZoom(self)
+                NotificationCenter.default.post(name: ZoomableNotification.endZoom, object: nil, userInfo: ["view": self])
+            })
     }
 
     /// Will transform the image with the appropriate
@@ -163,13 +176,13 @@ class ZoomableView: UIView {
 }
 
 extension ZoomableView: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }
 
-extension ZoomableViewDelegate {
-    func zoomableViewGetBackground(_ view: ZoomableView) -> UIView? {
-        return nil
+extension UIApplication {
+    func getKeyWindow() -> UIWindow? {
+        return UIApplication.shared.windows.first(where: { $0.isKeyWindow }) ?? UIApplication.shared.keyWindow
     }
 }

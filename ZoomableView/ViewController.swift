@@ -2,13 +2,13 @@
 //  ViewController.swift
 //  ZoomableView
 //
-//  Created by Savvycom2021 on 19/09/2021.
+//  Created by kevin.ngh54 on 01/01/2023.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: ZoomableTableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,6 @@ extension ViewController: UITableViewDataSource {
         } else if indexPath.row == 2 {
             cell.setData(type: .video)
         }
-        cell.delegate = self
         return cell
     }
     
@@ -44,15 +43,5 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.width
-    }
-}
-
-extension ViewController: CustomTableViewCellDelegate {
-    func customCellDidZoom(cell: CustomTableViewCell) {
-        tableView.isScrollEnabled = false
-    }
-    
-    func customCellEndZoom(cell: CustomTableViewCell) {
-        tableView.isScrollEnabled = true
     }
 }
